@@ -10,9 +10,9 @@ namespace Ecom.Core.Interface
     public interface IGenericRepository<T> where T: class
     {
         Task<IReadOnlyList<T>> GetAllAsync();
-        Task<IReadOnlyList<T>> GetAllAsync(Expression<Func<T, object>>[]includes);
+        Task<IReadOnlyList<T>> GetAllAsync( params Expression<Func<T, object>>[]includes);
         Task<T> GetbyIdAsync(int id);
-        Task<T> GetbyIdAsync(int id,Expression<Func<T, object>>[] includes);
+        Task<T> GetbyIdAsync(int id, params Expression<Func<T, object>>[] includes);
 
 
         Task AddAsync(T entity);
