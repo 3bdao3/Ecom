@@ -11,11 +11,15 @@
         {
             return statusCode switch
             {
-                200 => "Don",
-                400=> "Bad Request",
-                401 => "Unauthorized",
-                500 => "Internal Server Error",
-                _ => null,
+                400 => "Bad Request - الطلب غير صحيح",
+                401 => "Unauthorized - غير مصرح لك بالوصول",
+                403 => "Forbidden - الوصول مرفوض",
+                404 => "Not Found - لم يتم العثور على المورد المطلوب",
+                405 => "Method Not Allowed - الطريقة غير مسموحة",
+                500 => "Internal Server Error - خطأ داخلي في الخادم",
+                502 => "Bad Gateway - بوابة غير صالحة",
+                503 => "Service Unavailable - الخدمة غير متوفرة حاليًا",
+                _ => "Unexpected Error - حدث خطأ غير متوقع"
 
             };
         }
