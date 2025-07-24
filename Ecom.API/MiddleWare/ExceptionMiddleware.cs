@@ -1,23 +1,23 @@
-﻿using System.Net;
+using System.Net;
 using System.Text.Json;
 using Ecom.API.Helper;
 using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Hosting;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using Microsoft.AspNetCore.Hosting;
+
 namespace Ecom.API.MiddleWare
 {
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
        // private readonly ILogger<ExceptionMiddleware> _logger;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
         private readonly IMemoryCache _cache;
         private readonly TimeSpan _reltivtimeSpan = TimeSpan.FromSeconds(30);
-        public ExceptionMiddleware(RequestDelegate next, /*ILogger<ExceptionMiddleware> logger*/ IHostingEnvironment _environment, IMemoryCache cache)
+        public ExceptionMiddleware(RequestDelegate next, /*ILogger<ExceptionMiddleware> logger*/ IWebHostEnvironment environment, IMemoryCache cache)
         {
             _next = next;
             //_logger = logger;
-            this._environment = _environment;
+            _environment = environment;
             _cache = cache;
         }
 
@@ -44,7 +44,7 @@ namespace Ecom.API.MiddleWare
                 context.Response.ContentType = "application/json";
 
                 var response = _environment.IsDevelopment() ? 
-                    new APIException((int)HttpStatusCode.InternalServerError,ex.Message,ex.StackTrace)
+                    new APIException((int)HttpStatusCode.InternalServerError,ex.Message,ex.StackTrace ?? string.Empty)
                     : new APIException((int)HttpStatusCode.InternalServerError, ex.Message);
 
                 var json = JsonSerializer.Serialize(response);
@@ -55,7 +55,7 @@ namespace Ecom.API.MiddleWare
 
         private bool IsAPIException(HttpContext Context)
         {
-            var ip= Context.Connection.RemoteIpAddress.ToString();
+            var ip= Context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
             var cahkey=$"Rate:{ip}";
             var  dateNow=DateTime.Now;
             var (timestap, count) = _cache.GetOrCreate(cahkey, entry =>
@@ -82,9 +82,9 @@ namespace Ecom.API.MiddleWare
 
         private void ApplySecurity(HttpContext context)
         {
-            context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-            context.Response.Headers.Add("X-Frame-Options", "DENY");
-            context.Response.Headers.Add("X-XSS-Protection", "1; mode=block");
+            context.Response.Headers["X-Content-Type-Options"] = "nosniff";
+            context.Response.Headers["X-Frame-Options"] = "DENY";
+            context.Response.Headers["X-XSS-Protection"] = "1; mode=block";
         }
 
 
