@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Services;
+using Ecom.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecom.infratruct.Repository.Service
+namespace Ecom.Infrastructure.Repository.Service
 {
     public class ImageManagementService : IImageManagementService
     {

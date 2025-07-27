@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecom.Core.DTO;
 using Ecom.Core.Entity.Product;
 using Ecom.Core.Interface;
 using Ecom.Core.Services;
-using Ecom.infratruct.Data;
+using Ecom.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecom.infratruct.Repository
+namespace Ecom.Infrastructure.Repository
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
