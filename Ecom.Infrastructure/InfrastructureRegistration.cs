@@ -30,6 +30,7 @@ namespace Ecom.Infrastructure
 
             // Services
             services.AddSingleton<IImageManagementService, ImageManagementService>();
+            services.AddSingleton<IJwtService, JwtService>();
             services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
             // Redis Cache

@@ -1,5 +1,5 @@
-﻿using Ecom.Core.Interface;
-using Ecom.infratruct.Data;
+using Ecom.Core.Interface;
+using Ecom.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecom.infratruct.Repository
+namespace Ecom.Infrastructure.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

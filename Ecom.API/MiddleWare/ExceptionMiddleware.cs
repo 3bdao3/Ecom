@@ -1,19 +1,19 @@
-﻿using System.Net;
+using System.Net;
 using System.Text.Json;
 using Ecom.API.Helper;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Hosting;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using IWebHostEnvironment = Microsoft.AspNetCore.Hosting.IWebHostEnvironment;
 namespace Ecom.API.MiddleWare
 {
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _next;
        // private readonly ILogger<ExceptionMiddleware> _logger;
-        private readonly IHostingEnvironment _environment;
+        private readonly IWebHostEnvironment _environment;
         private readonly IMemoryCache _cache;
         private readonly TimeSpan _reltivtimeSpan = TimeSpan.FromSeconds(30);
-        public ExceptionMiddleware(RequestDelegate next, /*ILogger<ExceptionMiddleware> logger*/ IHostingEnvironment _environment, IMemoryCache cache)
+        public ExceptionMiddleware(RequestDelegate next, /*ILogger<ExceptionMiddleware> logger*/ IWebHostEnvironment _environment, IMemoryCache cache)
         {
             _next = next;
             //_logger = logger;

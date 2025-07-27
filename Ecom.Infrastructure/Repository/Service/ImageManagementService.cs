@@ -29,7 +29,7 @@ namespace Ecom.Infrastructure.Repository.Service
                 if(item.Length > 0)
                 {
                     var ImageName = item.FileName;
-                   var ImageSrc= $"Images/ { src}  / { ImageName}";
+                   var ImageSrc= $"Images/{src}/{ImageName}";
                     var root=Path.Combine( ImageDirectory, ImageName);
                     using(FileStream stream= new FileStream(root, FileMode.Create))
                     {

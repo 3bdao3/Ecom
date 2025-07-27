@@ -82,7 +82,7 @@ namespace Ecom.Infrastructure.Repository
             {
                 imageManagementService.DeleteImageAsync(item.ImageName);
             }
-            //context.Photos.RemoveRange(findphoto);
+            context.Photos.RemoveRange(findphoto);
             context.Products.Remove(product);
            await context.SaveChangesAsync();
         }

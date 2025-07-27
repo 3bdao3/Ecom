@@ -1,11 +1,12 @@
-﻿namespace Ecom.API.Helper
+namespace Ecom.API.Helper
 {
     public class ResponsAPI
     {
-        public ResponsAPI(int statusCode, string message = null)
+        public ResponsAPI(int statusCode, string message = null, object data = null)
         {
             StatusCode = statusCode;
             Message = message?? GetmessageFromStatusCode(StatusCode);
+            Data = data;
         }
         private string GetmessageFromStatusCode(int statusCode)
         {
@@ -25,5 +26,6 @@
         }
         public int StatusCode { get; set; } 
         public string? Message { get; set; }
+        public object? Data { get; set; }
     }
 }
