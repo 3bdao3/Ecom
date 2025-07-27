@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Entity.Product;
+using Ecom.Core.Entity.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecom.infratruct.Data.Config
+namespace Ecom.Infrastructure.Data.Config
 {
     public class ProductConfigration : IEntityTypeConfiguration<Product>
     {

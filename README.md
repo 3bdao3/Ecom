@@ -20,7 +20,7 @@
 |----------------------|---------------------------------------------------------------------|
 | `Ecom.API`           | RESTful API layer exposing core e-commerce services                 |
 | `Ecom.Core`          | Domain models, business logic, service interfaces                   |
-| `Ecom.infratruct`    | Infrastructure services — database access, repositories, caching   |
+| `Ecom.Infrastructure`| Infrastructure services — database access, repositories, caching   |
 
 ## 📚 Technologies & Concepts Covered
 

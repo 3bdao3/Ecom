@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Entity.Product;
+using Ecom.Core.Entity.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ecom.infratruct.Data
+namespace Ecom.Infrastructure.Data
 {
     public class AppDbContext : DbContext
     {

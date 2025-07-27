@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 
-namespace Ecom.infratruct.Data
+namespace Ecom.Infrastructure.Data
 {
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {

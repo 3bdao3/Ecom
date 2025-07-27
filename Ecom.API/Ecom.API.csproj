@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Ecom.infratruct\Ecom.infratruct.csproj" />
+    <ProjectReference Include="..\Ecom.Infrastructure\Ecom.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>

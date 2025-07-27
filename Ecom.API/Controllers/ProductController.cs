@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecom.API.Helper;
 using Ecom.Core.DTO;
 using Ecom.Core.Entity.Product;
@@ -64,7 +64,7 @@ namespace Ecom.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponsAPI(200, ex.Message));
+                return BadRequest(new ResponsAPI(400, ex.Message));
             }
         }
         [HttpPut("update-Product")]
@@ -77,11 +77,11 @@ namespace Ecom.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponsAPI(200, ex.Message));
+                return BadRequest(new ResponsAPI(400, ex.Message));
             }
         }
-        [HttpDelete("Delet-Product")]
-        public async Task<IActionResult>delet(int Id)
+        [HttpDelete("delete-Product")]
+        public async Task<IActionResult> Delete(int Id)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace Ecom.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new ResponsAPI(200, ex.Message));
+                return BadRequest(new ResponsAPI(400, ex.Message));
             }
         }
     }
