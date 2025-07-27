@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Ecom.infratruct.Data.Migrations
+namespace Ecom.infratruct.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250315013801_frgrg")]
-    partial class frgrg
+    [Migration("20250727150903_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,7 +32,7 @@ namespace Ecom.infratruct.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Discrption")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -44,6 +44,14 @@ namespace Ecom.infratruct.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "test",
+                            Name = "test"
+                        });
                 });
 
             modelBuilder.Entity("Ecom.Core.Entity.Product.Photo", b =>
@@ -66,6 +74,14 @@ namespace Ecom.infratruct.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("Photos");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImageName = "test",
+                            ProductId = 1
+                        });
                 });
 
             modelBuilder.Entity("Ecom.Core.Entity.Product.Product", b =>
@@ -87,41 +103,50 @@ namespace Ecom.infratruct.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("NewPrice")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(12,2)");
+
+                    b.Property<decimal>("OldPrice")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "test",
+                            Name = "test",
+                            NewPrice = 12m,
+                            OldPrice = 0m
+                        });
                 });
 
             modelBuilder.Entity("Ecom.Core.Entity.Product.Photo", b =>
                 {
-                    b.HasOne("Ecom.Core.Entity.Product.Product", "Product")
+                    b.HasOne("Ecom.Core.Entity.Product.Product", null)
                         .WithMany("Photos")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("Ecom.Core.Entity.Product.Product", b =>
                 {
                     b.HasOne("Ecom.Core.Entity.Product.Category", "Category")
-                        .WithMany("products")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("Ecom.Core.Entity.Product.Category", b =>
-                {
-                    b.Navigation("products");
                 });
 
             modelBuilder.Entity("Ecom.Core.Entity.Product.Product", b =>
