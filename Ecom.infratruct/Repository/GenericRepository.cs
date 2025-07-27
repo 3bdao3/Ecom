@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Interface;
+using Ecom.Core.Interface;
 using Ecom.infratruct.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -27,8 +27,11 @@ namespace Ecom.infratruct.Repository
         public async Task DeletAsync(int id)
         {
             var entity = await _context.Set<T>().FindAsync(id);
-           _context.Set<T>().Remove(entity);
-            await _context.SaveChangesAsync();
+            if (entity != null)
+            {
+                _context.Set<T>().Remove(entity);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
@@ -43,13 +46,13 @@ namespace Ecom.infratruct.Repository
             return await query.ToListAsync();
         }
 
-        public async Task<T> GetbyIdAsync(int id)
+        public async Task<T?> GetbyIdAsync(int id)
         {
             var entity = await _context.Set<T>().FindAsync(id);
             return entity;
         }
 
-        public async Task<T> GetbyIdAsync(int id, Expression<Func<T, object>>[] includes)
+        public async Task<T?> GetbyIdAsync(int id, Expression<Func<T, object>>[] includes)
         {
             var query = _context.Set<T>().AsQueryable();
             foreach (var item in includes)

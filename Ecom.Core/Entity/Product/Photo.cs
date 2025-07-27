@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Ecom.Core.Entity.Product
 {
    public class Photo:BaseEntity<int>
     {
-        public string ImageName { get; set; }
+        public string ImageName { get; set; } = string.Empty;
 
         public int ProductId { get; set; }
         //[ForeignKey(nameof(ProductId))]

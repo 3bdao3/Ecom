@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecom.Core.DTO;
 using Ecom.Core.Entity.Product;
 using Ecom.Core.Interface;
@@ -32,7 +32,7 @@ namespace Ecom.infratruct.Repository
             var product = mapper.Map<Product>(addProductDto);
             await context.Products.AddAsync(product);
             await context.SaveChangesAsync();
-            var Imagepath = await imageManagementService.AddImageAsync(addProductDto.Photo, addProductDto.Name);
+            var Imagepath = await imageManagementService.AddImageAsync(addProductDto.Photo ?? throw new ArgumentNullException(nameof(addProductDto.Photo)), addProductDto.Name);
 
             var photo = Imagepath.Select(path => new Photo
             {
@@ -64,7 +64,7 @@ namespace Ecom.infratruct.Repository
                 imageManagementService.DeleteImageAsync(item.ImageName);
             }
             context.Photos.RemoveRange(Findphoto);
-            var imagepath = await imageManagementService.AddImageAsync(updateProductDto.Photo, updateProductDto.Name);
+            var imagepath = await imageManagementService.AddImageAsync(updateProductDto.Photo ?? throw new ArgumentNullException(nameof(updateProductDto.Photo)), updateProductDto.Name);
             var photo = imagepath.Select(path => new Photo
             {
                 ImageName = path,
