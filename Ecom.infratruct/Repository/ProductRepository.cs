@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecom.Core.DTO;
 using Ecom.Core.Entity.Product;
 using Ecom.Core.Interface;
@@ -61,7 +61,7 @@ namespace Ecom.infratruct.Repository
             var Findphoto=await context.Photos.Where(c=>c.ProductId == updateProductDto.Id).ToListAsync();
             foreach (var item in Findphoto)
             {
-                imageManagementService.DeleteImageAsync(item.ImageName);
+                await imageManagementService.DeleteImageAsync(item.ImageName);
             }
             context.Photos.RemoveRange(Findphoto);
             var imagepath = await imageManagementService.AddImageAsync(updateProductDto.Photo, updateProductDto.Name);
@@ -80,9 +80,9 @@ namespace Ecom.infratruct.Repository
             var findphoto= await context.Photos.Where(c => c.ProductId == product.Id).ToListAsync();
             foreach (var item in findphoto)
             {
-                imageManagementService.DeleteImageAsync(item.ImageName);
+                await imageManagementService.DeleteImageAsync(item.ImageName);
             }
-            //context.Photos.RemoveRange(findphoto);
+            context.Photos.RemoveRange(findphoto);
             context.Products.Remove(product);
            await context.SaveChangesAsync();
         }

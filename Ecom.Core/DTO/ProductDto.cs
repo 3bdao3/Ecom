@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Entity.Product;
+using Ecom.Core.Entity.Product;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,8 @@ namespace Ecom.Core.DTO
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
+        public decimal NewPrice { get; set; }
+        public decimal OldPrice { get; set; }
         public virtual List<PhotoDto> Photos { get; set; }
         public string CategoryName { get; set; }
     }
