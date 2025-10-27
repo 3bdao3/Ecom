@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Interface;
+using Ecom.Core.Interface;
 using Ecom.Core.Services;
 using Ecom.infratruct.Data;
 using Ecom.infratruct.Repository;
@@ -30,7 +30,7 @@ namespace Ecom.infratruct
             services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"wwwroot")));
             services.AddDbContext<AppDbContext>(op =>
                 {
-                    op.UseSqlServer(configuration.GetConnectionString("ECOM"));
+                    op.UseSqlite(configuration.GetConnectionString("ECOM"));
                 });
 
                 return services;

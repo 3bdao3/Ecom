@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Entity.Product;
+using Ecom.Core.Entity.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -13,6 +13,7 @@ namespace Ecom.infratruct.Data.Config
     {
         public void Configure(EntityTypeBuilder<Photo> builder)
         {
+           builder.Property(x => x.ImageName).IsRequired().HasMaxLength(200);
            builder.HasData(
                new Photo { Id = 1, ImageName = "test", ProductId = 1 }
                );

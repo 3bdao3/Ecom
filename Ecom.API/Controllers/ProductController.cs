@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecom.API.Helper;
 using Ecom.Core.DTO;
 using Ecom.Core.Entity.Product;
@@ -86,7 +86,10 @@ namespace Ecom.API.Controllers
             try
             {
                 var product = await work.ProductRepository.GetbyIdAsync( Id,m=>m.Photos,e=>e.Category);
-                await work.ProductRepository.DeletAsync(product);
+                if (product != null)
+                {
+                    await work.ProductRepository.DeletAsync(product);
+                }
                 return Ok(new ResponsAPI(200));
             }
             catch (Exception ex)

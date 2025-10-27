@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -10,7 +10,7 @@ namespace Ecom.infratruct.Data
         public AppDbContext CreateDbContext(string[] args)
         {
             IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../Ecom.API"))
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .Build();
 
@@ -18,7 +18,7 @@ namespace Ecom.infratruct.Data
 
             var connectionString = configuration.GetConnectionString("ECOM");
 
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlite(connectionString);
 
             return new AppDbContext(optionsBuilder.Options);
         }

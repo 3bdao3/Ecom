@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Entity.Product;
+using Ecom.Core.Entity.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -14,9 +14,10 @@ namespace Ecom.infratruct.Data.Config
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(30);
+            builder.Property(x => x.Description).IsRequired().HasMaxLength(500);
             builder.Property(x => x.Id).IsRequired();
             builder.HasData(
-                new Category {Id=1,Name="test", Discrption="test"}
+                new Category {Id=1,Name="test", Description="test"}
                 );
 
         }

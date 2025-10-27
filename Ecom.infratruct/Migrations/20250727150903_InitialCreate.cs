@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace Ecom.infratruct.Data.Migrations
+namespace Ecom.infratruct.Migrations
 {
     /// <inheritdoc />
-    public partial class frgrg : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace Ecom.infratruct.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Discrption = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,7 +32,8 @@ namespace Ecom.infratruct.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(12,2)", nullable: false),
+                    NewPrice = table.Column<decimal>(type: "decimal(12,2)", precision: 18, scale: 2, nullable: false),
+                    OldPrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -65,6 +66,21 @@ namespace Ecom.infratruct.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Description", "Name" },
+                values: new object[] { 1, "test", "test" });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "CategoryId", "Description", "Name", "NewPrice", "OldPrice" },
+                values: new object[] { 1, 1, "test", "test", 12m, 0m });
+
+            migrationBuilder.InsertData(
+                table: "Photos",
+                columns: new[] { "Id", "ImageName", "ProductId" },
+                values: new object[] { 1, "test", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Photos_ProductId",
