@@ -1,8 +1,8 @@
-﻿namespace Ecom.API.Helper
+namespace Ecom.API.Helper
 {
     public class ResponsAPI
     {
-        public ResponsAPI(int statusCode, string message = null)
+        public ResponsAPI(int statusCode, string? message = null)
         {
             StatusCode = statusCode;
             Message = message?? GetmessageFromStatusCode(StatusCode);

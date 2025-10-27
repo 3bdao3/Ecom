@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Services;
+using Ecom.Core.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.FileProviders;
 using System;
@@ -48,8 +48,10 @@ namespace Ecom.infratruct.Repository.Service
             var info = fileProvider.GetFileInfo(src);
             var root = info.PhysicalPath;
 
-            File.Delete(path: root);
-            
+            if (!string.IsNullOrEmpty(root) && File.Exists(root))
+            {
+                File.Delete(path: root);
+            }
         }
 
         

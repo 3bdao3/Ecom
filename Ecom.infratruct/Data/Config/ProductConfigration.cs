@@ -1,4 +1,4 @@
-﻿using Ecom.Core.Entity.Product;
+using Ecom.Core.Entity.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -16,9 +16,10 @@ namespace Ecom.infratruct.Data.Config
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Description).IsRequired();
             builder.Property(x => x.NewPrice).HasColumnType("decimal(12,2)");
-            builder.HasData(
-                new Product { Id=1,Name="test",Description="test",CategoryId=1, NewPrice = 12}
-                );
+            // Seed data commented out since we're using required properties
+            // builder.HasData(
+            //     new Product { Id=1,Name="test",Description="test",CategoryId=1, NewPrice = 12}
+            //     );
 
         }
     }
